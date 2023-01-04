@@ -46,7 +46,7 @@ class CodeResult extends ResponseResult {
   int? direction;
   int? wordsResultNumber;
   IDCardResult? wordsResult;
-  String?imagePath;
+  String? imagePath;
 
   CodeResult();
   factory CodeResult.fromJson(Map<String, dynamic> json) =>
@@ -55,18 +55,19 @@ class CodeResult extends ResponseResult {
 }
 
 @JsonSerializable()
+
 /// 通用识别
 class Words {
   String? words;
   Location? location;
 
   Words();
-  factory Words.fromJson(Map<String, dynamic> json) =>
-      _$WordsFromJson(json);
+  factory Words.fromJson(Map<String, dynamic> json) => _$WordsFromJson(json);
   Map<String, dynamic> toJson() => _$WordsToJson(this);
 }
 
 @JsonSerializable()
+
 /// 定位
 class Location {
   int? top;
@@ -81,7 +82,7 @@ class Location {
 }
 
 @JsonSerializable()
-class BankResult extends ResponseResult{
+class BankResult extends ResponseResult {
   int? direction;
   Result? result;
   BankResult();
@@ -99,8 +100,7 @@ class Result {
   String? bankCardNumber;
 
   Result();
-  factory Result.fromJson(Map<String, dynamic> json) =>
-      _$ResultFromJson(json);
+  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
   Map<String, dynamic> toJson() => _$ResultToJson(this);
 }
 

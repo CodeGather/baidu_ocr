@@ -26,11 +26,14 @@ IDCardResult _$IDCardResultFromJson(Map<String, dynamic> json) => IDCardResult()
       ? null
       : Words.fromJson(json['民族'] as Map<String, dynamic>)
   ..signDate = json['签发日期'] == null
-      ? null : Words.fromJson(json['签发日期'] as Map<String, dynamic>)
+      ? null
+      : Words.fromJson(json['签发日期'] as Map<String, dynamic>)
   ..expiryDate = json['失效日期'] == null
-      ? null : Words.fromJson(json['失效日期'] as Map<String, dynamic>)
+      ? null
+      : Words.fromJson(json['失效日期'] as Map<String, dynamic>)
   ..issueAuthority = json['签发机关'] == null
-      ? null : Words.fromJson(json['签发机关'] as Map<String, dynamic>);
+      ? null
+      : Words.fromJson(json['签发机关'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$IDCardResultToJson(IDCardResult instance) =>
     <String, dynamic>{
@@ -50,7 +53,8 @@ CodeResult _$CodeResultFromJson(Map<String, dynamic> json) => CodeResult()
   ..jsonRes = json['jsonRes'] as String?
   ..direction = json['direction'] as int?
   ..wordsResultNumber = json['words_result_number'] as int?
-  ..wordsResult = IDCardResult.fromJson(json['words_result'] as Map<String, dynamic>)
+  ..wordsResult =
+      IDCardResult.fromJson(json['words_result'] as Map<String, dynamic>)
   ..imagePath = json['imagePath'] as String?;
 
 Map<String, dynamic> _$CodeResultToJson(CodeResult instance) =>
@@ -69,8 +73,7 @@ Words _$WordsFromJson(Map<String, dynamic> json) => Words()
       ? null
       : Location.fromJson(json['location'] as Map<String, dynamic>);
 
-Map<String, dynamic> _$WordsToJson(Words instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$WordsToJson(Words instance) => <String, dynamic>{
       'words': instance.words,
       'location': instance.location,
     };
@@ -88,28 +91,26 @@ Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
       'height': instance.height,
     };
 
-
 BankResult _$BankResultFromJson(Map<String, dynamic> json) => BankResult()
   ..direction = json['direction'] as int?
   ..result = json['result'] == null
       ? null
       : Result.fromJson(json['result'] as Map<String, dynamic>);
 
-Map<String, dynamic> _$BankResultToJson(BankResult instance) => <String, dynamic>{
-  'direction': instance.direction,
-  'result': instance.result?.toJson() ?? {},
-};
-
-Result _$ResultFromJson(Map<String, dynamic> json) =>
-    Result()
-      ..bankCardType = json['bank_card_type'] as int?
-      ..bankName = json['bank_name'] as String?
-      ..validDate = json['valid_date'] as String?
-      ..holderName = json['holder_name'] as String?
-      ..bankCardNumber = json['bank_card_number'] as String?;
-
-Map<String, dynamic> _$ResultToJson(Result instance) =>
+Map<String, dynamic> _$BankResultToJson(BankResult instance) =>
     <String, dynamic>{
+      'direction': instance.direction,
+      'result': instance.result?.toJson() ?? {},
+    };
+
+Result _$ResultFromJson(Map<String, dynamic> json) => Result()
+  ..bankCardType = json['bank_card_type'] as int?
+  ..bankName = json['bank_name'] as String?
+  ..validDate = json['valid_date'] as String?
+  ..holderName = json['holder_name'] as String?
+  ..bankCardNumber = json['bank_card_number'] as String?;
+
+Map<String, dynamic> _$ResultToJson(Result instance) => <String, dynamic>{
       'bankCardType': instance.bankCardType,
       'bankName': instance.bankName,
       'validDate': instance.validDate,

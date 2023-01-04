@@ -30,14 +30,14 @@ class _MyAppState extends State<MyApp> {
     // {result: {bank_card_type: 1, bank_name: 中国银行, valid_date: 08/26, bank_card_number: 621788 0800004636579}, log_id: 1597677334438540723}
     if (kDebugMode) {
       print(
-        "------------------------------------------------------------------------------------------$event");
+          "------------------------------------------------------------------------------------------$event");
     }
   }
 
   void _onError(error) {
     if (kDebugMode) {
       print(
-        "==========================================================================================$error");
+          "==========================================================================================$error");
     }
   }
 
@@ -84,7 +84,8 @@ class _MyAppState extends State<MyApp> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    final result = await BaiduOcr.initSdk("assets/${Platform.isAndroid ? 'aip-ocr' : 'aip-ocr-ios'}.license");
+                    final result = await BaiduOcr.initSdk(
+                        "assets/${Platform.isAndroid ? 'aip-ocr' : 'aip-ocr-ios'}.license");
                     if (kDebugMode) {
                       print(result);
                     }
@@ -94,7 +95,7 @@ class _MyAppState extends State<MyApp> {
                 ElevatedButton(
                   onPressed: () async {
                     CodeResult? result =
-                    await BaiduOcr.basicOcr(InvokeParams.fromJson({
+                        await BaiduOcr.basicOcr(InvokeParams.fromJson({
                       "isScan": true,
                       "sideType": InvokeParams.idCardSideFront,
                       "type": OcrType.REQUEST_CODE_ICARD,
@@ -111,7 +112,7 @@ class _MyAppState extends State<MyApp> {
                 ElevatedButton(
                   onPressed: () async {
                     final result =
-                    await BaiduOcr.basicOcr(InvokeParams.fromJson({
+                        await BaiduOcr.basicOcr(InvokeParams.fromJson({
                       "isScan": true,
                       "sideType": InvokeParams.idCardSideBack,
                       "type": OcrType.REQUEST_CODE_ICARD,
@@ -128,7 +129,7 @@ class _MyAppState extends State<MyApp> {
                 ElevatedButton(
                   onPressed: () async {
                     final result =
-                    await BaiduOcr.basicOcr(InvokeParams.fromJson({
+                        await BaiduOcr.basicOcr(InvokeParams.fromJson({
                       "isScan": false,
                       "sideType": InvokeParams.idCardSideBack,
                       "type": OcrType.REQUEST_CODE_ICARD,
@@ -145,7 +146,7 @@ class _MyAppState extends State<MyApp> {
                 ElevatedButton(
                   onPressed: () async {
                     final result =
-                    await BaiduOcr.basicOcr(InvokeParams.fromJson({
+                        await BaiduOcr.basicOcr(InvokeParams.fromJson({
                       "isScan": false,
                       "sideType": InvokeParams.idCardSideFront,
                       "type": OcrType.REQUEST_CODE_ICARD,
@@ -162,7 +163,7 @@ class _MyAppState extends State<MyApp> {
                 ElevatedButton(
                   onPressed: () async {
                     final result =
-                    await BaiduOcr.bankCard(InvokeParams.fromJson({
+                        await BaiduOcr.bankCard(InvokeParams.fromJson({
                       "isScan": false,
                       "sideType": InvokeParams.contentTypeBankCard,
                       "type": OcrType.REQUEST_CODE_BANKCARD,
