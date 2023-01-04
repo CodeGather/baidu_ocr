@@ -2,6 +2,7 @@ import 'package:baidu_ocr/model/IDCardResult.dart';
 
 export 'model/IDCardResult.dart';
 export 'model/InvokeParams.dart';
+export 'model/Enum.dart';
 
 import 'baidu_ocr_platform_interface.dart';
 import 'model/InvokeParams.dart';
@@ -45,7 +46,7 @@ class BaiduOcr {
 
   // 银行卡识别
   // {bankCardName: 中国银行, bankCardType: Debit, bankCardNumber: 621788 0800004636579, resultCode: 1}
-  static Future get bankCard async {
-    return BaiduOcrPlatform.instance.bankCard;
+  static Future<BankResult?> bankCard(InvokeParams params) async {
+    return BaiduOcrPlatform.instance.bankCard(params);
   }
 }

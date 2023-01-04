@@ -7,59 +7,42 @@ part of 'IDCardResult.dart';
 // **************************************************************************
 
 IDCardResult _$IDCardResultFromJson(Map<String, dynamic> json) => IDCardResult()
-  ..logId = json['logId'] as int?
-  ..jsonRes = json['jsonRes'] as String?
-  ..direction = json['direction'] as int?
-  ..wordsResultNumber = json['wordsResultNumber'] as int?
-  ..address = json['address'] == null
+  ..address = json['住址'] == null
       ? null
-      : Word.fromJson(json['address'] as Map<String, dynamic>)
-  ..idNumber = json['idNumber'] == null
+      : Words.fromJson(json['住址'] as Map<String, dynamic>)
+  ..idNumber = json['公民身份号码'] == null
       ? null
-      : Word.fromJson(json['idNumber'] as Map<String, dynamic>)
-  ..birthday = json['birthday'] == null
+      : Words.fromJson(json['公民身份号码'] as Map<String, dynamic>)
+  ..birthday = json['出生'] == null
       ? null
-      : Word.fromJson(json['birthday'] as Map<String, dynamic>)
-  ..name = json['name'] == null
+      : Words.fromJson(json['出生'] as Map<String, dynamic>)
+  ..name = json['姓名'] == null
       ? null
-      : Word.fromJson(json['name'] as Map<String, dynamic>)
-  ..gender = json['gender'] == null
+      : Words.fromJson(json['姓名'] as Map<String, dynamic>)
+  ..gender = json['性别'] == null
       ? null
-      : Word.fromJson(json['gender'] as Map<String, dynamic>)
-  ..ethnic = json['ethnic'] == null
+      : Words.fromJson(json['性别'] as Map<String, dynamic>)
+  ..ethnic = json['民族'] == null
       ? null
-      : Word.fromJson(json['ethnic'] as Map<String, dynamic>)
-  ..idCardSide = json['idCardSide'] as String?
-  ..riskType = json['riskType'] as String?
-  ..imageStatus = json['imageStatus'] as String?
-  ..signDate = json['signDate'] == null
-      ? null
-      : Word.fromJson(json['signDate'] as Map<String, dynamic>)
-  ..expiryDate = json['expiryDate'] == null
-      ? null
-      : Word.fromJson(json['expiryDate'] as Map<String, dynamic>)
-  ..issueAuthority = json['issueAuthority'] == null
-      ? null
-      : Word.fromJson(json['issueAuthority'] as Map<String, dynamic>);
+      : Words.fromJson(json['民族'] as Map<String, dynamic>)
+  ..signDate = json['签发日期'] == null
+      ? null : Words.fromJson(json['签发日期'] as Map<String, dynamic>)
+  ..expiryDate = json['失效日期'] == null
+      ? null : Words.fromJson(json['失效日期'] as Map<String, dynamic>)
+  ..issueAuthority = json['签发机关'] == null
+      ? null : Words.fromJson(json['签发机关'] as Map<String, dynamic>);
 
 Map<String, dynamic> _$IDCardResultToJson(IDCardResult instance) =>
     <String, dynamic>{
-      'logId': instance.logId,
-      'jsonRes': instance.jsonRes,
-      'direction': instance.direction,
-      'wordsResultNumber': instance.wordsResultNumber,
-      'address': instance.address,
-      'idNumber': instance.idNumber,
-      'birthday': instance.birthday,
-      'name': instance.name,
-      'gender': instance.gender,
-      'ethnic': instance.ethnic,
-      'idCardSide': instance.idCardSide,
-      'riskType': instance.riskType,
-      'imageStatus': instance.imageStatus,
-      'signDate': instance.signDate,
-      'expiryDate': instance.expiryDate,
-      'issueAuthority': instance.issueAuthority,
+      'address': instance.address?.toJson() ?? {},
+      'idNumber': instance.idNumber?.toJson() ?? {},
+      'birthday': instance.birthday?.toJson() ?? {},
+      'name': instance.name?.toJson() ?? {},
+      'gender': instance.gender?.toJson() ?? {},
+      'ethnic': instance.ethnic?.toJson() ?? {},
+      'signDate': instance.signDate?.toJson() ?? {},
+      'expiryDate': instance.expiryDate?.toJson() ?? {},
+      'issueAuthority': instance.issueAuthority?.toJson() ?? {},
     };
 
 CodeResult _$CodeResultFromJson(Map<String, dynamic> json) => CodeResult()
@@ -67,57 +50,28 @@ CodeResult _$CodeResultFromJson(Map<String, dynamic> json) => CodeResult()
   ..jsonRes = json['jsonRes'] as String?
   ..direction = json['direction'] as int?
   ..wordsResultNumber = json['words_result_number'] as int?
-  ..wordsResult = (json['words_result'] as List<dynamic>?)
-      ?.map((e) => WordsResult.fromJson(e as Map<String, dynamic>))
-      .toList();
+  ..wordsResult = IDCardResult.fromJson(json['words_result'] as Map<String, dynamic>)
+  ..imagePath = json['imagePath'] as String?;
 
 Map<String, dynamic> _$CodeResultToJson(CodeResult instance) =>
     <String, dynamic>{
       'logId': instance.logId,
       'jsonRes': instance.jsonRes,
       'direction': instance.direction,
+      'imagePath': instance.imagePath,
       'wordsResultNumber': instance.wordsResultNumber,
-      'wordsResult': instance.wordsResult,
+      'wordsResult': instance.wordsResult?.toJson() ?? {},
     };
 
-WordsResult _$WordsResultFromJson(Map<String, dynamic> json) => WordsResult()
-  ..vertexesLocation = (json['vertexes_location'] as List<dynamic>?)
-      ?.map((e) => VertexesLocation.fromJson(e as Map<String, dynamic>))
-      .toList()
-  ..chars = (json['chars'] as List<dynamic>?)
-      ?.map((e) => Chars.fromJson(e as Map<String, dynamic>))
-      .toList()
-  ..finegrainedVertexesVocation =
-      (json['finegrained_vertexes_vocation'] as List<dynamic>?)
-          ?.map((e) => VertexesLocation.fromJson(e as Map<String, dynamic>))
-          .toList()
+Words _$WordsFromJson(Map<String, dynamic> json) => Words()
   ..words = json['words'] as String?
-  ..location = json['location'] == null
-      ? null
-      : Location.fromJson(json['location'] as Map<String, dynamic>)
-  ..minFinegrainedVertexesVocation =
-      (json['min_finegrained_vertexes_vocation'] as List<dynamic>?)
-          ?.map((e) => VertexesLocation.fromJson(e as Map<String, dynamic>))
-          .toList();
-
-Map<String, dynamic> _$WordsResultToJson(WordsResult instance) =>
-    <String, dynamic>{
-      'vertexesLocation': instance.vertexesLocation,
-      'chars': instance.chars,
-      'finegrainedVertexesVocation': instance.finegrainedVertexesVocation,
-      'words': instance.words,
-      'location': instance.location,
-      'minFinegrainedVertexesVocation': instance.minFinegrainedVertexesVocation,
-    };
-
-Chars _$CharsFromJson(Map<String, dynamic> json) => Chars()
-  ..char = json['char'] as String?
   ..location = json['location'] == null
       ? null
       : Location.fromJson(json['location'] as Map<String, dynamic>);
 
-Map<String, dynamic> _$CharsToJson(Chars instance) => <String, dynamic>{
-      'char': instance.char,
+Map<String, dynamic> _$WordsToJson(Words instance) =>
+    <String, dynamic>{
+      'words': instance.words,
       'location': instance.location,
     };
 
@@ -134,6 +88,35 @@ Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
       'height': instance.height,
     };
 
+
+BankResult _$BankResultFromJson(Map<String, dynamic> json) => BankResult()
+  ..direction = json['direction'] as int?
+  ..result = json['result'] == null
+      ? null
+      : Result.fromJson(json['result'] as Map<String, dynamic>);
+
+Map<String, dynamic> _$BankResultToJson(BankResult instance) => <String, dynamic>{
+  'direction': instance.direction,
+  'result': instance.result?.toJson() ?? {},
+};
+
+Result _$ResultFromJson(Map<String, dynamic> json) =>
+    Result()
+      ..bankCardType = json['bank_card_type'] as int?
+      ..bankName = json['bank_name'] as String?
+      ..validDate = json['valid_date'] as String?
+      ..holderName = json['holder_name'] as String?
+      ..bankCardNumber = json['bank_card_number'] as String?;
+
+Map<String, dynamic> _$ResultToJson(Result instance) =>
+    <String, dynamic>{
+      'bankCardType': instance.bankCardType,
+      'bankName': instance.bankName,
+      'validDate': instance.validDate,
+      'holderName': instance.holderName,
+      'bankCardNumber': instance.bankCardNumber,
+    };
+
 ResponseResult _$ResponseResultFromJson(Map<String, dynamic> json) =>
     ResponseResult()
       ..logId = json['logId'] as int?
@@ -143,45 +126,4 @@ Map<String, dynamic> _$ResponseResultToJson(ResponseResult instance) =>
     <String, dynamic>{
       'logId': instance.logId,
       'jsonRes': instance.jsonRes,
-    };
-
-Word _$WordFromJson(Map<String, dynamic> json) => Word()
-  ..words = json['words'] as String?
-  ..vertexesLocation = (json['vertexes_location'] as List<dynamic>?)
-      ?.map((e) => VertexesLocation.fromJson(e as Map<String, dynamic>))
-      .toList()
-  ..characterResults = (json['character_results'] as List<dynamic>?)
-      ?.map((e) => Char.fromJson(e as Map<String, dynamic>))
-      .toList();
-
-Map<String, dynamic> _$WordToJson(Word instance) => <String, dynamic>{
-      'words': instance.words,
-      'vertexesLocation': instance.vertexesLocation,
-      'characterResults': instance.characterResults,
-    };
-
-VertexesLocation _$VertexesLocationFromJson(Map<String, dynamic> json) =>
-    VertexesLocation()
-      ..x = json['x'] as int?
-      ..y = json['y'] as int?;
-
-Map<String, dynamic> _$VertexesLocationToJson(VertexesLocation instance) =>
-    <String, dynamic>{
-      'x': instance.x,
-      'y': instance.y,
-    };
-
-Char _$CharFromJson(Map<String, dynamic> json) =>
-    Char()..character = json['character'] as String?;
-
-Map<String, dynamic> _$CharToJson(Char instance) => <String, dynamic>{
-      'character': instance.character,
-    };
-
-WordSimple _$WordSimpleFromJson(Map<String, dynamic> json) =>
-    WordSimple()..words = json['words'] as String?;
-
-Map<String, dynamic> _$WordSimpleToJson(WordSimple instance) =>
-    <String, dynamic>{
-      'words': instance.words,
     };

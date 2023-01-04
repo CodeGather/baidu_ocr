@@ -1,5 +1,8 @@
 package com.sean.rao.baidu_ocr;
 
+import static com.sean.rao.baidu_ocr.common.CameraEnum.CONTENT_TYPE_BANK_CARD;
+import static com.sean.rao.baidu_ocr.common.CameraEnum.REQUEST_CODE_BANKCARD;
+
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -15,11 +18,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.baidu.ocr.sdk.OCR;
 import com.baidu.ocr.sdk.OnResultListener;
 import com.baidu.ocr.sdk.exception.OCRError;
 import com.baidu.ocr.sdk.model.AccessToken;
+import com.baidu.ocr.sdk.model.BankCardResult;
 import com.baidu.ocr.sdk.model.IDCardParams;
 import com.baidu.ocr.sdk.model.IDCardResult;
 import com.baidu.ocr.ui.camera.CameraActivity;
@@ -71,8 +76,6 @@ public class BaiduOcrPlugin implements FlutterPlugin, MethodCallHandler, Activit
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     String method = call.method;
     eventResult = result;
-    Object ocrType = call.argument("ype");
-    int type = ocrType != null ? (int) ocrType : CameraEnum.REQUEST_CODE_GENERAL;
     switch (method) {
       case "getPlatformVersion":
         result.success("Android " + android.os.Build.VERSION.RELEASE);
@@ -86,15 +89,18 @@ public class BaiduOcrPlugin implements FlutterPlugin, MethodCallHandler, Activit
         String sideType = call.argument("sideType");
         Object argument = call.argument("isScan");
         boolean isScan = argument != null && (boolean) argument;
+        Object ocrType = call.argument("type");
+        int type = ocrType != null ? Integer.parseInt(String.valueOf(ocrType)) : CameraEnum.REQUEST_CODE_GENERAL;
         if (isScan) {
           localIdcardOCROnline(sideType, type);
         } else {
 //          startActivity(sideType, CameraEnum.REQUEST_CODE_ICARD);
-          startActivity(Objects.requireNonNull(sideType).isEmpty() ? CameraActivity.CONTENT_TYPE_GENERAL : sideType, type);
+          if (type == REQUEST_CODE_BANKCARD) {
+            startActivity(CameraActivity.CONTENT_TYPE_BANK_CARD, CameraEnum.REQUEST_CODE_BANKCARD);
+          } else {
+            startActivity(Objects.requireNonNull(sideType).isEmpty() ? CameraActivity.CONTENT_TYPE_GENERAL : sideType, type);
+          }
         }
-        break;
-      case "bankCard": // 银行卡识别
-        startActivity(CameraActivity.CONTENT_TYPE_BANK_CARD, CameraEnum.REQUEST_CODE_BANKCARD);
         break;
       default:
         result.notImplemented();
@@ -129,6 +135,10 @@ public class BaiduOcrPlugin implements FlutterPlugin, MethodCallHandler, Activit
       public void onResult(AccessToken result) {
         String token = result.getAccessToken();
         hasGotToken = true;
+        JSONObject resultData = new JSONObject();
+        resultData.put("msg", "初始化成功");
+        resultData.put("msg", true);
+        eventResult.success(resultData);
         Log.d("BdOcrPlugin-initSDK 成功", token);
       }
       @Override
@@ -200,15 +210,15 @@ public class BaiduOcrPlugin implements FlutterPlugin, MethodCallHandler, Activit
       @Override
       public void onResult(IDCardResult result) {
         if (result != null) {
-          eventResult.success(JSONObject.toJSONString(result));
-          Toast.makeText(activity, JSONObject.toJSONString(result), Toast.LENGTH_SHORT).show();
+          JSONObject resultData = JSON.parseObject(result.getJsonRes());
+          resultData.put("imagePath", filePath);
+          eventResult.success(resultData);
         }
       }
 
       @Override
       public void onError(OCRError error) {
-        eventResult.success(JSONObject.toJSONString(error));
-        Toast.makeText(activity, error.getMessage(), Toast.LENGTH_SHORT).show();
+        eventResult.success(error);
       }
     });
   }
@@ -527,11 +537,15 @@ public class BaiduOcrPlugin implements FlutterPlugin, MethodCallHandler, Activit
               recIDCard(IDCardParams.ID_CARD_SIDE_FRONT, filePathFront);
               break;
             case CameraEnum.REQUEST_CODE_BANKCARD:
-              RecognizeService.recBankCard(activity, filePath, new RecognizeService.ServiceListener() {
-                  @Override
-                  public void onResult(String result) {
-                    eventResult.success(result);
-                  }
+              RecognizeService.recBankCard(activity, filePath, new OnResultListener<BankCardResult>()  {
+                @Override
+                public void onResult(BankCardResult bankCardResult) {
+                  eventResult.success(JSON.parseObject(bankCardResult.getJsonRes()));
+                }
+                @Override
+                public void onError(OCRError ocrError) {
+                  eventResult.success(ocrError);
+                }
               });
               break;
             case CameraEnum.REQUEST_CODE_CAMERA:

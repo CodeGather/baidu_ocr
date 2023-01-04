@@ -175,7 +175,7 @@ public class RecognizeService {
         });
     }
 
-    public static void recBankCard(Context ctx, String filePath, final ServiceListener listener) {
+    public static void recBankCard(Context ctx, String filePath, final OnResultListener<BankCardResult> listener) {
         BankCardParams param = new BankCardParams();
         param.setImageFile(new File(filePath));
         OCR.getInstance(ctx).recognizeBankCard(param, new OnResultListener<BankCardResult>() {
@@ -188,12 +188,12 @@ public class RecognizeService {
                         result.getValid_date(),
                         result.getHolder_name());
                 listener.onResult(res);*/
-                listener.onResult(result.getJsonRes());
+                listener.onResult(result);
             }
 
             @Override
             public void onError(OCRError error) {
-                listener.onResult(error.getMessage());
+                listener.onError(error);
             }
         });
     }

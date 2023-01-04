@@ -41,9 +41,9 @@ class MethodChannelBaiduOcr extends BaiduOcrPlatform {
   // 通用文字识别
   @override
   Future<CodeResult?> basicOcr(InvokeParams params) async {
-    String result =
+    final result =
         await methodChannel.invokeMethod('basicOcr', params.toJson());
-    return CodeResult.fromJson(json.decode(result));
+    return CodeResult.fromJson(json.decode(json.encode(result)));
   }
 
   // 身份证正面
@@ -58,7 +58,9 @@ class MethodChannelBaiduOcr extends BaiduOcrPlatform {
   // 银行卡识别
   // {bankCardName: 中国银行, bankCardType: Debit, bankCardNumber: 621788 0800004636579, resultCode: 1}
   @override
-  Future get bankCard async {
-    return await methodChannel.invokeMethod('bankCard');
+  Future<BankResult?> bankCard(InvokeParams params) async {
+    final result =
+        await methodChannel.invokeMethod('basicOcr', params.toJson()) ?? "{}";
+    return BankResult.fromJson(json.decode(json.encode(result)));
   }
 }

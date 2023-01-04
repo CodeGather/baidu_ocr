@@ -20,7 +20,7 @@ class MockBaiduOcrPlatform
 
   @override
   // TODO: implement bankCard
-  Future get bankCard => throw UnimplementedError();
+  Future<BankResult?> bankCard(InvokeParams params) => throw UnimplementedError();
 
   @override
   // TODO: implement basicOcr

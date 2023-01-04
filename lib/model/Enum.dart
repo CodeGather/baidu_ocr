@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 enum OcrType {
+  /// 身份证识别
   REQUEST_CODE_ICARD,
 
   /// 通用文字识别（含位置信息）

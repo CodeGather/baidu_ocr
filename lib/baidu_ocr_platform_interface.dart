@@ -49,7 +49,7 @@ abstract class BaiduOcrPlatform extends PlatformInterface {
     throw UnimplementedError('get idcardFront has not been implemented.');
   }
 
-  Future get bankCard {
+  Future<BankResult?> bankCard(InvokeParams params) {
     throw UnimplementedError('get bankCard has not been implemented.');
   }
 }

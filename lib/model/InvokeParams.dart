@@ -10,7 +10,7 @@ class InvokeParams {
   static const String contentTypeGeneral = "general";
 
   /// 正面
-  static const String idCardSideIDCardFront = "IDCardFront";
+  static const String idCardSideFront = "IDCardFront";
 
   /// 反面
   static const String idCardSideBack = "IDCardBack";
