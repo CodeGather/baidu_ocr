@@ -218,7 +218,9 @@ public class BaiduOcrPlugin implements FlutterPlugin, MethodCallHandler, Activit
 
       @Override
       public void onError(OCRError error) {
-        eventResult.success(error);
+        JSONObject resultError = new JSONObject();
+        resultError.put("msg", "识别失败");
+        eventResult.success(resultError);
       }
     });
   }
@@ -544,7 +546,9 @@ public class BaiduOcrPlugin implements FlutterPlugin, MethodCallHandler, Activit
                 }
                 @Override
                 public void onError(OCRError ocrError) {
-                  eventResult.success(ocrError);
+                  JSONObject resultError = new JSONObject();
+                  resultError.put("msg", "识别失败");
+                  eventResult.success(resultError);
                 }
               });
               break;

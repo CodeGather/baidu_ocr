@@ -263,11 +263,10 @@ typedef NS_ENUM(NSUInteger, OrcType) {
     };
     // 识别失败的回调
     _failHandler = ^(NSError *error){
-      NSMutableDictionary * muErrorDic = [[NSMutableDictionary alloc] initWithCapacity:0];
-      NSLog(@"%@", error);
-      NSString *msg = [NSString stringWithFormat:@"%li:%@", (long)[error code], [error localizedDescription]];
-      [muErrorDic setObject: msg forKey: @"msg"];
-      weakSelf -> eventResult(muErrorDic);
+      [weakSelf resultData: @"识别失败" data: @false];
+      dispatch_async(dispatch_get_main_queue(), ^{
+          [viewController dismissViewControllerAnimated: YES completion:nil];
+      });
     };
 }
 

@@ -17,6 +17,8 @@
 
     <application
         android:networkSecurityConfig="@xml/network_security_config"
+        android:allowBackup="false"
+        tools:replace="android:allowBackup"
         tools:targetApi="n">
         <activity
             android:label="@string/idCardLabel"
