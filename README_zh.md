@@ -1,7 +1,5 @@
 [![Pub](https://img.shields.io/pub/v/ali_auth.svg)](https://pub.flutter-io.cn/packages/ali_auth)
-![Ali_auth workflow](https://github.com/CodeGather/baidu_ocr/actions/workflows/actions_analysis.yml/badge.svg)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8f5d7a0c1e5b4efebcd0502df53a61d0)](https://www.codacy.com/gh/CodeGather/baidu_ocr/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CodeGather/baidu_ocr&amp;utm_campaign=Badge_Grade)
-[![CircleCI](https://circleci.com/gh/CodeGather/baidu_ocr/tree/master.svg?style=svg)](https://circleci.com/gh/CodeGather/baidu_ocr/tree/master)
 
 
 # baidu_ocr
@@ -36,11 +34,7 @@ dependencies:
 
 ## DEMO
 
-<img src="https://raw.githubusercontent.com/CodeGather/baidu_ocr/master/screenshot/Screenshot_20220517_123128.jpg" width="100"><img src="https://raw.githubusercontent.com/CodeGather/baidu_ocr/master/screenshot/Screenshot_20220517_120625.jpg" width="100"><img src="https://raw.githubusercontent.com/CodeGather/baidu_ocr/master/screenshot/Screenshot_20220517_120629.jpg" width="100"><img src="https://raw.githubusercontent.com/CodeGather/baidu_ocr/master/screenshot/Screenshot_20220517_120634.jpg" width="100"><img src="https://raw.githubusercontent.com/CodeGather/baidu_ocr/master/screenshot/Screenshot_20220517_120649.jpg" width="100">
-
-## VIDEO
-
-<img src="https://raw.githubusercontent.com/CodeGather/baidu_ocr/master/screenshot/SVID_20220517_120504.gif" width="100"> 
+<img src="https://raw.githubusercontent.com/CodeGather/baidu_ocr/master/screenshot/IMG_7E7F1FCD80B5-1.jpeg" width="100">
 
 ## Reward
 
