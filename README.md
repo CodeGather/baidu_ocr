@@ -2,7 +2,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/8f5d7a0c1e5b4efebcd0502df53a61d0)](https://www.codacy.com/gh/CodeGather/baidu_ocr/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CodeGather/baidu_ocr&amp;utm_campaign=Badge_Grade)
 
 
-# ali_auth
+# baidu_ocr
 
 [![GitHub license](https://img.shields.io/github/license/CodeGather/baidu_ocr?style=social)](https://github.com/CodeGather/baidu_ocr/blob/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/CodeGather/baidu_ocr?style=social)](https://github.com/CodeGather/baidu_ocr/issues)
